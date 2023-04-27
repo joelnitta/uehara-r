@@ -1,5 +1,3 @@
 project:
-  title: "uehara-r"
-
-
-
+  title: "Uehara Lab R Workshop"
+  output-dir: docs

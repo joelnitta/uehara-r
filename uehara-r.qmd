@@ -1,0 +1,74 @@
+---
+title: "上原ゼミR講座"
+format:
+  revealjs:
+    incremental: true
+author: ニッタ ジョエル
+---
+
+## なぜコードを使うのか？
+
+- 解析を再現可能にするため
+
+## 再現性とは？
+
+- 他の人（将来の自分を含めて）があなたの解析を再度行って、同じ結果を得ることができること
+
+## なぜR?
+
+- タダ
+- 柔軟性
+- 広く生態学に使われている
+- コミュニティー
+
+## RとRStudio 
+
+:::::: {.nonincremental}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Rとは「R Project for Statistical Computing」という組織が提供しているオープンソース（タダの）プログラミング言語
+
+:::
+
+::: {.column width="50%"}
+
+![](https://www.r-project.org/logo/Rlogo.svg)
+
+:::
+
+::::
+
+::::::
+
+# RとRStudio
+
+:::::: {.nonincremental}
+
+:::: {.columns}
+
+::: {.nonincremental}
+
+
+- RStudioとはPosit社が提供しているIDE（Integrated Development Environment）
+  - 基本的な機能はタダ
+  - 会社向けの機能は有料
+  - Rのコードを書く・実行する最適なソフト
+
+:::
+
+::: {.column width="50%"}
+
+:::
+
+::: {.column width="50%"}
+
+
+:::
+
+::::
+
+
+::::::

@@ -2,7 +2,7 @@
 title: "上原ゼミR講座"
 format:
   revealjs:
-    incremental: true
+    incremental: false
 author: ニッタ ジョエル
 institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
 footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a>
@@ -21,14 +21,16 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 ## なぜR?
 
+:::::: {.incremental}
+
 - タダ
 - 柔軟性
 - 広く生態学に使われている
 - コミュニティー
 
-## RとRStudio 
+::::::
 
-:::::: {.nonincremental}
+## RとRStudio 
 
 :::: {.columns}
 
@@ -42,11 +44,7 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 ::::
 
-::::::
-
 ## RとRStudio
-
-:::::: {.nonincremental}
 
 :::: {.columns}
 
@@ -63,11 +61,7 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 ::::
 
-::::::
-
 ## 資料
-
-:::::: {.nonincremental}
 
 :::: {.columns}
 
@@ -85,11 +79,7 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 ::::
 
-::::::
-
 ## ライブコーディングとは？
-
-:::::: {.nonincremental}
 
 - インストラクターが打っていると同じコードを同時に自分のパソコンで打っていく
 
@@ -99,10 +89,44 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 <img src="images/zoom_reactions.png" alt="drawing" height="200">
 
-::::::
-
 ## フィードバック
 
 毎回簡単なアンケートがあります。次の講座をより良くするための参考とさせていただきます。ご回答お願いします。
 
 <https://forms.gle/CAQyMEoSmECgSjBD8>
+
+# 第二回: 関数と<br>パッケージ
+2023-05-02
+
+## 前回のおさらい
+
+:::::: {.incremental}
+
+- R（あるいは他のプログラミング言語）を使う目的・<br>理由は**解析を再現可能にする**こと
+- RとRStudioはそれぞれ別なソフト
+  - RStudioを使うのにRが必須けど、Rは単独で使える
+- RStudioでは、直接Rと話もできるし、コードを記録することもできる
+
+::::::
+
+## RStudioのデフォルト設定を<br>変えましょう
+
+前のセッションのデータが残っていることは再現の観点<br>からダメ！
+
+. . . 
+
+Global Options → General → Workspace
+
+- "Restore .RData into workspace at startup" → **外す**
+- "Save workspace to .RData on exit:" → **"Never"**
+
+
+## RStudioのデフォルト設定を<br>変えましょう
+
+前のセッションのデータが残っていることは再現の観点<br>からダメ！
+
+![](images/settings_change.png){fig-alt="Screenshot showing how to change Rstudio settings for .RData"}
+
+## 関数とは
+
+## パッケージとは

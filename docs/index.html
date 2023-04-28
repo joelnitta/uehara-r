@@ -347,27 +347,28 @@
 <section id="なぜコードを使うのか" class="slide level2">
 <h2>なぜコードを使うのか？</h2>
 <ul>
-<li class="fragment">解析を再現可能にするため</li>
+<li>解析を再現可能にするため</li>
 </ul>
 </section>
 <section id="再現性とは" class="slide level2">
 <h2>再現性とは？</h2>
 <ul>
-<li class="fragment">他の人（将来の自分を含めて）があなたの解析を再度行って、同じ結果を得ることができること</li>
+<li>他の人（将来の自分を含めて）があなたの解析を再度行って、同じ結果を得ることができること</li>
 </ul>
 </section>
 <section id="なぜr" class="slide level2">
 <h2>なぜR?</h2>
+<div>
 <ul>
 <li class="fragment">タダ</li>
 <li class="fragment">柔軟性</li>
 <li class="fragment">広く生態学に使われている</li>
 <li class="fragment">コミュニティー</li>
 </ul>
+</div>
 </section>
 <section id="rとrstudio" class="slide level2">
 <h2>RとRStudio</h2>
-<div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -377,11 +378,9 @@
 <p><img data-src="https://www.r-project.org/logo/Rlogo.svg"></p>
 </div>
 </div>
-</div>
 </section>
 <section id="rとrstudio-1" class="slide level2">
 <h2>RとRStudio</h2>
-<div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -396,11 +395,9 @@
 <p><img data-src="https://posit.co/wp-content/uploads/2022/10/thumbnail-3.jpg"></p>
 </div>
 </div>
-</div>
 </section>
 <section id="資料" class="slide level2">
 <h2>資料</h2>
-<div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -415,23 +412,60 @@
 <p><img data-src="https://m.media-amazon.com/images/I/91WTLn1DrBL.jpg"></p>
 </div>
 </div>
-</div>
 </section>
 <section id="ライブコーディングとは" class="slide level2">
 <h2>ライブコーディングとは？</h2>
-<div>
 <ul>
 <li><p>インストラクターが打っていると同じコードを同時に自分のパソコンで打っていく</p></li>
 <li><p>インストラクターが参加者の理解を確認する（「〜が出来ましたか？」）</p></li>
 <li><p>zoomの「反応」をクリック→「はい」、「いいえ」　</p></li>
 </ul>
 <p><img src="images/zoom_reactions.png" alt="drawing" height="200"></p>
-</div>
 </section>
 <section id="フィードバック" class="slide level2">
 <h2>フィードバック</h2>
 <p>毎回簡単なアンケートがあります。次の講座をより良くするための参考とさせていただきます。ご回答お願いします。</p>
 <p><a href="https://forms.gle/CAQyMEoSmECgSjBD8" class="uri">https://forms.gle/CAQyMEoSmECgSjBD8</a></p>
+</section></section>
+<section>
+<section id="第二回-関数と-パッケージ" class="title-slide slide level1 center">
+<h1>第二回: 関数と<br>パッケージ</h1>
+<p>2023-05-02</p>
+</section>
+<section id="前回のおさらい" class="slide level2">
+<h2>前回のおさらい</h2>
+<div>
+<ul>
+<li class="fragment">R（あるいは他のプログラミング言語）を使う目的・<br>理由は<strong>解析を再現可能にする</strong>こと</li>
+<li class="fragment">RとRStudioはそれぞれ別なソフト
+<ul>
+<li class="fragment">RStudioを使うのにRが必須けど、Rは単独で使える</li>
+</ul></li>
+<li class="fragment">RStudioでは、直接Rと話もできるし、コードを記録することもできる</li>
+</ul>
+</div>
+</section>
+<section id="rstudioのデフォルト設定を-変えましょう" class="slide level2">
+<h2>RStudioのデフォルト設定を<br>変えましょう</h2>
+<p>前のセッションのデータが残っていることは再現の観点<br>からダメ！</p>
+<div class="fragment">
+<p>Global Options → General → Workspace</p>
+<ul>
+<li>“Restore .RData into workspace at startup” → <strong>外す</strong></li>
+<li>“Save workspace to .RData on exit:” → <strong>“Never”</strong></li>
+</ul>
+</div>
+</section>
+<section id="rstudioのデフォルト設定を-変えましょう-1" class="slide level2">
+<h2>RStudioのデフォルト設定を<br>変えましょう</h2>
+<p>前のセッションのデータが残っていることは再現の観点<br>からダメ！</p>
+
+<img data-src="images/settings_change.png" alt="Screenshot showing how to change Rstudio settings for .RData" class="r-stretch"></section>
+<section id="関数とは" class="slide level2">
+<h2>関数とは</h2>
+</section>
+<section id="パッケージとは" class="slide level2">
+<h2>パッケージとは</h2>
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a></p>
 </div>

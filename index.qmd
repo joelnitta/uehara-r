@@ -4,7 +4,8 @@ format:
   revealjs:
     incremental: true
 author: ニッタ ジョエル
-institute: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a>
+institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
+footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a>
 ---
 
 # 第一回: RとRStudio入門

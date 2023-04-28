@@ -115,11 +115,10 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 . . . 
 
-Global Options → General → Workspace
+Tools → Global Options → General → Workspace
 
 - "Restore .RData into workspace at startup" → **外す**
 - "Save workspace to .RData on exit:" → **"Never"**
-
 
 ## RStudioのデフォルト設定を<br>変えましょう
 

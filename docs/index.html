@@ -605,6 +605,33 @@
 <p>前のセッションのデータが残っていることは再現の観点<br>からダメ！</p>
 
 <img data-src="images/settings_change.png" alt="Screenshot showing how to change Rstudio settings for .RData" class="r-stretch"></section>
+<section id="rstudioのプロジェクト管理" class="slide level2">
+<h2>RStudioのプロジェクト管理</h2>
+<p>RStudioの「プロジェクト」機能（.Rprojファイル）はデータ解析の整理に役立つ</p>
+<p>いつも決まったディレクトリ構造を使うと楽になる</p>
+</section>
+<section id="rstudioのプロジェクト管理-1" class="slide level2 smaller">
+<h2>RStudioのプロジェクト管理</h2>
+<ul>
+<li><code>data_raw/</code>
+<ul>
+<li>生データを置く場所。生データは絶対にいじらない（読み込み専用）</li>
+</ul></li>
+<li><code>data/</code>
+<ul>
+<li>コードによって整えられたデータを置く場所。使い捨てのつもりで良い。</li>
+</ul></li>
+<li><code>results/</code>
+<ul>
+<li>コードによって得られた結果を置く場所。これも使い捨て。</li>
+</ul></li>
+<li><code>code/</code>
+<ul>
+<li>コードを置く場所。ベストプラクティスはgitでバージョン管理を施す。</li>
+</ul></li>
+</ul>
+<p><strong>データ</strong>と<strong>コード</strong>があればいつでも結果は得られる（再現できる）</p>
+</section>
 <section id="コメントの書き方" class="slide level2">
 <h2>コメントの書き方</h2>
 <p><code>#</code>で書く（Rはこの後を無視する）</p>
@@ -654,7 +681,7 @@
 </section>
 <section id="チャレンジ" class="slide level2">
 <h2>チャレンジ</h2>
-<p>次のプログラムのそれぞれの宣言の後、それぞれの変数の値は 何になるでしょうか？</p>
+<p>次のプログラムのそれぞれの宣言の後、それぞれの変数の値は何になるでしょうか？</p>
 <div class="large">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mass <span class="ot">&lt;-</span> <span class="fl">47.5</span></span>
@@ -762,6 +789,11 @@
 </ul></li>
 </ul>
 </div>
+</section>
+<section id="アンケート" class="slide level2">
+<h2>アンケート</h2>
+<p><a href="https://forms.gle/5jEFkqztS89TkC4D8" class="uri">https://forms.gle/5jEFkqztS89TkC4D8</a></p>
+<p>ご回答をどうぞよろしくお願いします</p>
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a></p>
 </div>

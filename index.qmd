@@ -192,6 +192,25 @@ Tools → Global Options → General → Workspace
 
 ![](images/settings_change.png){fig-alt="Screenshot showing how to change Rstudio settings for .RData"}
 
+## RStudioのプロジェクト管理
+
+RStudioの「プロジェクト」機能（.Rprojファイル）はデータ解析の整理に役立つ
+
+いつも決まったディレクトリ構造を使うと楽になる
+
+## RStudioのプロジェクト管理 {.smaller}
+
+- `data_raw/`
+  - 生データを置く場所。生データは絶対にいじらない（読み込み専用）
+- `data/`
+  - コードによって整えられたデータを置く場所。使い捨てのつもりで良い。
+- `results/`
+  - コードによって得られた結果を置く場所。これも使い捨て。
+- `code/`
+  - コードを置く場所。ベストプラクティスはgitでバージョン管理を施す。
+
+**データ**と**コード**があればいつでも結果は得られる（再現できる）
+
 ## コメントの書き方
 
 `#`で書く（Rはこの後を無視する）
@@ -340,3 +359,9 @@ head(bci_shannon)
   - TokyoR, AsiaRなど
 
 ::::::
+
+## アンケート
+
+<https://forms.gle/5jEFkqztS89TkC4D8>
+
+ご回答をどうぞよろしくお願いします

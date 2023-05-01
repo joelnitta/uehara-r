@@ -3,6 +3,27 @@ title: "上原ゼミR講座"
 format:
   revealjs:
     incremental: false
+    css: styles.css
+    include-in-header: 
+      text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translateY(-50%), translateX(-50%);
+          transform: translateY(-50%), translateX(-50%);
+        }
+        .center-x {
+          margin: 0;
+          position: absolute;
+          left: 50%;
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
+        </style>
+
 author: ニッタ ジョエル
 institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
 footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a>
@@ -173,7 +194,60 @@ Tools → Global Options → General → Workspace
 
 ## 関数とは
 
+何かの値（インプット）を受けて、処理して、計算結果（アウトプット）を返すもの
+
+::: center-x
+
+<img src="https://manamina.valuesccg.com/uploads/content/image/12292/__.png" alt="drawing" height="100">
+
+::: small
+<https://manamina.valuesccg.com/articles/756>
+:::
+
+:::
+
+
+## 関数とは？
+
+関数の書き方：
+
+- 関数名(引数)
+
+関数の例：`print()`、`paste()`
+
 ## パッケージとは
+
+**関数（とデータ）の集め**
+
+. . .
+
+何か具体的な解析をしたい時に使う
+
+- たとえば、Shannon指数
+
+## パッケージとは
+
+- たとえば、Shannon指数
+
+```{r}
+#| label: shanon
+#| echo: true
+
+# "vegan" パッケージをロードする
+library(vegan)
+
+# "vegan" パッケージに備えているデータ、"BCI"をロードする
+data(BCI)
+
+# BCI　データの大きさを確かめる（行x列）
+dim(BCI)
+
+# Shannon指数を計算する
+bci_shannon <- diversity(BCI, "shannon")
+
+# 結果を確かめる
+head(bci_shannon)
+```
 
 ## 分からなくなった時の対応
 

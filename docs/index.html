@@ -605,6 +605,71 @@
 <p>前のセッションのデータが残っていることは再現の観点<br>からダメ！</p>
 
 <img data-src="images/settings_change.png" alt="Screenshot showing how to change Rstudio settings for .RData" class="r-stretch"></section>
+<section id="コメントの書き方" class="slide level2">
+<h2>コメントの書き方</h2>
+<p><code>#</code>で書く（Rはこの後を無視する）</p>
+<ul>
+<li><p>自分へのメモとして使う</p></li>
+<li><p>いっぱい書きましょう</p></li>
+</ul>
+</section>
+<section id="変数の名前について" class="slide level2">
+<h2>変数の名前について</h2>
+<ul>
+<li>変数名には、文字、数字、下線、ピリオドを含むことができる。 数から始まることはできず、空白を含むことはできない。 長い変数名のつけ方は様々。</li>
+</ul>
+<p>例えば、</p>
+<ul>
+<li>ピリオドを.単語の.間に入れる</li>
+<li><strong>下線を_単語の_間に入れる</strong> （おすすめ）</li>
+<li>単語の始まりを大文字にする（camelCaseToSeparateWords）</li>
+</ul>
+</section>
+<section id="変数の名前について-1" class="slide level2">
+<h2>変数の名前について</h2>
+<p>Rは大文字・小文字の違いを意識するから、混ぜない方がわかりやすい</p>
+</section>
+<section id="代入の演算子" class="slide level2">
+<h2>代入の演算子</h2>
+<p>代入の演算子として、<code>=</code>を使うこともできる：</p>
+<div class="large">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>しかし、これはRユーザーでは、あまり使われていない。<code>&lt;-</code>の方が意味がクリア。</p>
+</section>
+<section id="環境を管理する" class="slide level2">
+<h2>環境を管理する</h2>
+<ul>
+<li><code>ls()</code>
+<ul>
+<li>環境に入っているものをリストアップする</li>
+</ul></li>
+<li><code>rm()</code>
+<ul>
+<li>環境から何かを消す</li>
+</ul></li>
+</ul>
+</section>
+<section id="チャレンジ" class="slide level2">
+<h2>チャレンジ</h2>
+<p>次のプログラムのそれぞれの宣言の後、それぞれの変数の値は 何になるでしょうか？</p>
+<div class="large">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mass <span class="ot">&lt;-</span> <span class="fl">47.5</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>age <span class="ot">&lt;-</span> <span class="dv">122</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>mass <span class="ot">&lt;-</span> mass <span class="sc">*</span> <span class="fl">2.3</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>age <span class="ot">&lt;-</span> age <span class="sc">-</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>次に、massとageを比較するコマンドを書いて下さい。 massはageよりも大きいでしょうか？</p>
+</div>
+<div class="fragment">
+<p>最後に、massとageの変数を消去し、作業環境をきれいにしよう</p>
+</div>
+</section>
 <section id="関数とは" class="slide level2">
 <h2>関数とは</h2>
 <p>何かの値（インプット）を受けて、処理して、計算結果（アウトプット）を返すもの</p>
@@ -639,27 +704,40 @@
 <li>たとえば、Shannon指数</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># "vegan" パッケージをロードする</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># "vegan" パッケージに備えているデータ、"BCI"をロードする</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">data</span>(BCI)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># BCI　データの大きさを確かめる（行x列）</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">dim</span>(BCI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># "vegan" パッケージをロードする</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># "vegan" パッケージに備えているデータ、"BCI"をロードする</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">data</span>(BCI)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># BCI　データの大きさを確かめる（行x列）</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">dim</span>(BCI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  50 225</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Shannon指数を計算する</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>bci_shannon <span class="ot">&lt;-</span> <span class="fu">diversity</span>(BCI, <span class="st">"shannon"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># 結果を確かめる</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">head</span>(bci_shannon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Shannon指数を計算する</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>bci_shannon <span class="ot">&lt;-</span> <span class="fu">diversity</span>(BCI, <span class="st">"shannon"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># 結果を確かめる</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">head</span>(bci_shannon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1        2        3        4        5        6 
 4.018412 3.848471 3.814060 3.976563 3.969940 3.776575 </code></pre>
 </div>
 </div>
+</section>
+<section id="パッケージの管理" class="slide level2">
+<h2>パッケージの管理</h2>
+<ul>
+<li><code>install.packages("packagename")</code>
+<ul>
+<li>パッケージのインストール（一回でいい）</li>
+</ul></li>
+<li><code>library(packagename)</code>
+<ul>
+<li>パッケージを使える状態にする（毎回）</li>
+</ul></li>
+</ul>
 </section>
 <section id="分からなくなった時の対応" class="slide level2">
 <h2>分からなくなった時の対応</h2>

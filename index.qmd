@@ -152,7 +152,7 @@ footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.
 
 - どちらも使う場合がありますが、**エディタの方が多いでしょう**
 
-. . .
+## フィードバック
 
 > Console内の実行履歴が保存できなかった
 

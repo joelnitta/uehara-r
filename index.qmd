@@ -365,3 +365,18 @@ head(bci_shannon)
 <https://forms.gle/5jEFkqztS89TkC4D8>
 
 ご回答をどうぞよろしくお願いします
+
+# 第三回: データ
+2023-05-12
+
+## tokyoR
+
+slackの参加方法：<https://github.com/TokyoR/r-wakalang>に<br>行って、「参加」リンクをクリック
+
+![](images/tokyor_sanka.png){fig-alt="How to join TokyoR Slack" height="200"}
+
+## tokyoR
+
+`#r_beginners`チャンネルがおすすめ
+
+![](images/tokyor_slack.png){fig-alt="Screenshot of TokyoR slack" height="450"}

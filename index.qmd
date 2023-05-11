@@ -364,7 +364,7 @@ head(bci_shannon)
 
 <https://forms.gle/5jEFkqztS89TkC4D8>
 
-ご回答をどうぞよろしくお願いします
+ご回答のご協力をどうぞよろしくお願いします
 
 # 第三回: データ
 2023-05-12
@@ -380,3 +380,357 @@ slackの参加方法：<https://github.com/TokyoR/r-wakalang>に<br>行って、
 `#r_beginners`チャンネルがおすすめ
 
 ![](images/tokyor_slack.png){fig-alt="Screenshot of TokyoR slack" height="450"}
+
+## フィードバック
+
+> 今までコピペをして、理解できていなかったコマンドを理解する事ができた
+
+- よかったです！コピペではある程度出来るし（自分もよくやっている）けど、基本が分からないと中々うまく行かない。chatGPTもやっぱりそう。
+
+## フィードバック
+
+> ホットキーの操作が上手くいかずコマンドを打ち間違えることが多かった。
+
+- 他にもあるけど、今覚えていただきたいのは「実行する」（mac: ⌘⏎、windows: ctrl⏎）
+  - 実行したい行の中にカーサーをおいて、あるいは選択してから打つ
+
+## フィードバック
+
+> 関数ls（）の意味は、関数rm（）で消した変数を復活させるという意味であってますか。
+
+- 違います。`ls()`は現在環境にある物を**表示する**（list）コマンド。
+
+- `rm()`で何かを消したら、それを**取り戻すことができない**（リナックスの`rm`と同様に）
+
+## フィードバック
+
+> shannon のあたりからコードを入れても同じように出てこないことがあった
+
+- よかったら後で個別に見ましょう
+
+## フィードバック
+
+> コンソールとスクリプト画面の使い方について最初説明がありましたが、どちらを先に書くのが自分にあっているのか、試しながら探していきます。
+
+- やっているうちに慣れてくるけど、スクリプトはコードを記録する（後でまた同じように出来るために取っておく）ところで、コンソールは気軽に何かを確認したい時に使う
+
+## 前回のおさらい
+
+- **「関数」**とは何かの値を受けて、処理して、計算結果を返すもの
+- **「パッケージ」**とは、関数をまとめたもの
+
+## tidyverse
+
+- `tidyverse`とは、データの整理・基本的な解析を行うためのパケージの集まり（「パケージ郡」）。これからよく使うことになる。
+
+- 個別にインストール・ロードする必要はなく、一気にできるので楽。
+
+- インストールするのにちょっと時間かかるので今のうちにやりましょう。
+
+```{r}
+#| eval: false
+#| echo: TRUE
+install.packages("tidyverse")
+```
+
+## データタイプ
+
+- numeric（数字）
+  - Rでは「double」と呼ぶこともある
+
+```{r}
+#| echo: TRUE
+cost <- 20.5
+
+cost
+
+typeof(cost)
+```
+
+## データタイプ
+
+- character（文字列）
+- 文字列を指定する際、引用符が必要
+  - アポストロフィーも使えるけど、必要がなければおすすめしない
+```{r}
+#| echo: TRUE
+my_name <- "Joel"
+typeof(my_name)
+
+x <- "1"
+typeof(x)
+```
+
+## データタイプ
+
+- character（文字列）
+- 文字列を指定する際、引用符が必要
+  - アポストロフィーも使えるけど、必要がなければおすすめしない
+
+```{r}
+#| echo: TRUE
+#| error: true
+x - 1
+```
+
+## データタイプ
+
+- logical（論理型）
+
+```{r}
+#| echo: TRUE
+yes <- TRUE
+no <- FALSE
+typeof(yes)
+```
+
+## データタイプ
+
+- logical（論理型）
+- `>`（より大きい）, `<`（より小さい）, `==`（等しい）, `!=`（等しくない）、`||`（もしくは）で比較ができる
+  - `=` ではなく、`==`
+```{r}
+#| echo: TRUE
+my_age <- 39
+my_age > 40
+my_name == "Fred"
+my_name == "Joel"
+my_name != "Fred"
+my_age > 40 || my_age < 45
+```
+
+## ベクトル
+
+- データを複数含むもの
+  - データは全部**同じタイプじゃないといけない**
+
+- ベクトルを作る関数は`c()`
+  - "concatenate"（くっつける）の略
+
+数字ベクトルを作ってみましょう
+```{r}
+#| echo: TRUE
+ages <- c(39, 18, 70)
+ages
+```
+
+## ベクトル
+
+ベクトルには名前を持つことができる
+
+```{r}
+#| echo: TRUE
+names(ages) <- c("joel", "mary", "bob")
+ages
+```
+
+## データの部分集合化
+
+「部分集合化」（subsetting）とは、**ベクトルの中から欲しいところだけを切り取ること**
+
+- `[]`で欲しいところを指定する
+  - Rは（０ではなく）１から数える
+```{r}
+#| echo: true
+# 一番目の値
+ages[1]
+# 一と二番目の値
+ages[c(1,2)]
+```
+
+## データの部分集合化
+
+- `-`（マイナス）で欲しくないところを切り落とす
+```{r}
+#| echo: true
+# 一番目*以外*の値
+ages[-1]
+# 一と二番目*以外*の値
+ages[-c(1,2)]
+```
+
+## データの部分集合化
+
+**名前**で指定することもできる
+
+```{r}
+#| echo: true
+ages["joel"]
+ages[c("joel", "mary")]
+```
+
+## データの部分集合化
+
+**ロジカルベクトル**で指定することもできる
+
+```{r}
+#| echo: true
+ages[c(FALSE, FALSE, TRUE)]
+
+is_senior <- ages > 65
+
+ages[is_senior]
+```
+
+## チャレンジ
+
+以下のうち、agesから**２つ目の数値だけ**を抜き出す事ができるのはどれでしょう？
+
+```
+ages[ages > 15]
+ages[c(FALSE, TRUE, FALSE)]
+ages["2"]
+ages[ages < 25]
+ages[-2]
+```
+
+## データフレームについて
+
+「データフレーム」とは表形式データ（エクセルで扱うようなデータ）
+
+- エクセルとの大きな違い：各列は同じデータ型を持たなければならない
+
+- tidyverseパッケージでは、tibbleと呼ばれる
+
+![](images/dataframe.png){fig-alt="Image of a data frame" height="400"}
+
+## データフレームの読み込み
+
+- tidyverseの`read_csv()`（CSVファイル）あるいは`read_tsv()`（TSVファイル）がおすすめ
+  - `.xlsx`ファイルの読み込みには`xlsx`パッケージの`read_excel()`がおすすめ
+
+- このデータをダウンロードして、`data_raw/`に保存してください：<https://www.dropbox.com/s/fdirlsnxlzy53qq/gapminder.csv?dl=0>
+
+## データフレームの読み込み
+
+- `read_csv()`でデータを読み込む
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+library(tidyverse)
+gapminder <- read_csv("data_raw/gapminder.csv")
+gapminder
+```
+
+## チャレンジ
+
+`gapminder`を打つと、このデータについていくつかの事項が表示される。
+
+- データの大きさはどれくらい（行と列はいくつある）？
+- それぞれの行のデータの種類（データタイプ）はどうなっている？
+
+## データフレームの全体をつかむ
+
+- `summary(data)`で全部の値の平均などを集計する
+
+::: medsmall
+```{r}
+#| echo: true
+summary(gapminder)
+```
+:::
+
+## 列の順を並び変える
+
+- `arrange(data, column)`
+
+```{r}
+#| echo: true
+arrange(gapminder, pop)
+```
+
+## 列の順を並び変える
+
+- `arrange(data, column1, column2)`で複数の行によって並び変える
+
+```{r}
+#| echo: true
+arrange(gapminder, year, country)
+```
+
+## 列の順を並び変える
+
+- デフォルトで小さい順（あるいは、Aの方）から並ぶ
+- 大きい方（あるいは、Zの方）から並べたい時は`desc()`を使う
+
+```{r}
+#| echo: true
+arrange(gapminder, year, desc(country))
+```
+
+## 行を抜き出す
+
+- `select(data, column)`で行を抜き出す
+
+```{r}
+#| echo: true
+select(gapminder, country)
+```
+
+## 行を抜き出す
+
+- `select(data, column)`で行を抜き出す
+
+```{r}
+#| echo: true
+select(gapminder, year, country, pop)
+```
+
+## 行を抜き出す
+
+- 数字でも指定できる
+
+```{r}
+#| echo: true
+select(gapminder, 1, 2)
+```
+
+## 行を抜き出す
+
+- `:`で行の範囲を指定できる
+
+```{r}
+#| echo: true
+select(gapminder, 1:4)
+```
+
+## 行を抜き出す
+
+- `:`で行の範囲を指定できる
+
+```{r}
+#| echo: true
+select(gapminder, country:pop)
+```
+
+## 列を絞る
+
+- `filter()`である条件に合っている列だけに絞る
+
+```{r}
+#| echo: true
+filter(gapminder, country == "Brazil")
+```
+
+## 列を絞る
+
+- `filter()`である条件に合っている列だけに絞る
+
+```{r}
+#| echo: true
+filter(gapminder, year == max(year))
+```
+
+## チャレンジ
+
+`gapminder`からアジアのみの国名・年・人口のデータを切り出して、別のcsvファイルとして保存して下さい
+
+- ヒント：`write_csv()`でcsvファイルを保存することができる
+
+## アンケート
+
+<https://forms.gle/ZLiiS9mVy8FJ2yBR6>
+
+ご回答のご協力をどうぞよろしくお願いします

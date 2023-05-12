@@ -588,11 +588,13 @@ ages[-2]
 
 「データフレーム」とは表形式データ（エクセルで扱うようなデータ）
 
+![](images/dataframe.png){fig-alt="Image of a data frame" height="400"}
+
+## データフレームについて
+
 - エクセルとの大きな違い：各列は同じデータ型を持たなければならない
 
-- tidyverseパッケージでは、tibbleと呼ばれる
-
-![](images/dataframe.png){fig-alt="Image of a data frame" height="400"}
+- tidyverseパッケージでは、「tibble」と呼ばれる
 
 ## データフレームの読み込み
 

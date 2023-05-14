@@ -1452,6 +1452,64 @@ ages[-2]</code></pre>
 <h2>アンケート</h2>
 <p><a href="https://forms.gle/ZLiiS9mVy8FJ2yBR6" class="uri">https://forms.gle/ZLiiS9mVy8FJ2yBR6</a></p>
 <p>ご回答のご協力をどうぞよろしくお願いします</p>
+</section></section>
+<section>
+<section id="第四回-データ後編と図の作成" class="title-slide slide level1 center">
+<h1>第四回: データ（後編）と図の作成</h1>
+<p>2023-05-19</p>
+</section>
+<section id="フィードバック-11" class="slide level2">
+<h2>フィードバック</h2>
+<blockquote>
+<p>データの保存場所に苦労した</p>
+</blockquote>
+<p>R（そして、他のプログラミング言語も）は現在いる場所（<strong>「作業ディレクトリ」</strong>）から物を探す。自分の頭の中の「今いる場所」とRの作業ディレクトリが違うと上手くいかない。</p>
+</section>
+<section id="作業ディレクトリの確認設定" class="slide level2">
+<h2>作業ディレクトリの確認・設定</h2>
+<ul>
+<li><p><code>getwd()</code>で作業ディレクトリを確認する</p></li>
+<li><p><code>setwd()</code>で作業ディレクトリを設定する</p></li>
+</ul>
+<p>おすすめ：RStudioのプロジェクト機能を使って、<strong><code>.Rproj</code>ファイルをダブルクリックすることでRStudioを開く。</strong></p>
+<p>そうすれば、<strong>作業ディレクトリがプロジェクトのフォルダーになる</strong>ので、わかりやすい。</p>
+</section>
+<section id="フィードバック-12" class="slide level2">
+<h2>フィードバック</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">39</span>, <span class="dv">18</span>, <span class="dv">70</span>)</span>
+<span id="cb75-2"><a href="#cb75-2"></a><span class="fu">names</span>(ages) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"joel"</span>, <span class="st">"mary"</span>, <span class="st">"bob"</span>)</span>
+<span id="cb75-3"><a href="#cb75-3"></a>ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote>
+<p>上記のコードでは、それぞれの年齢に名前を紐づけたという認識であってますか？</p>
+</blockquote>
+<p>そうです。ただし、ベクトルの要素に名前をつけることはそんなに多くない。</p>
+</section>
+<section id="フィードバック-13" class="slide level2">
+<h2>フィードバック</h2>
+<p>それよりも、データフレームを使うことが多い：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb76-2"><a href="#cb76-2"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"joel"</span>, <span class="st">"mary"</span>, <span class="st">"bob"</span>),</span>
+<span id="cb76-3"><a href="#cb76-3"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">39</span>, <span class="dv">18</span>, <span class="dv">70</span>)</span>
+<span id="cb76-4"><a href="#cb76-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  name age
+1 joel  39
+2 mary  18
+3  bob  70</code></pre>
+</div>
+</div>
+<p><code>data.frame()</code>あるいは<code>tibble()</code>でデータフレームを作る</p>
+</section>
+<section id="フィードバック-14" class="slide level2">
+<h2>フィードバック</h2>
+<blockquote>
+<p>bracket が2つ以上になるとc()がいるのはなぜでしょうか。</p>
+</blockquote>
+<p><code>[]</code>の中の数字が二つ以上のことですよね？何故なら、<code>[]</code>の中は<strong>ベクトルではないといけない</strong>からです。</p>
+<p>（Rで<code>3</code>は長さ＝１のベクトルです）</p>
 <div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a></p>
 </div>

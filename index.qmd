@@ -23,7 +23,8 @@ format:
           transform: translateX(-50%);
         }
         </style>
-
+execute: 
+  echo: true
 author: ニッタ ジョエル
 institute: <a href="https://joelnitta.com">https://joelnitta.com</a>
 footer: <a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a>
@@ -792,3 +793,214 @@ data.frame(
 
 （Rで`3`は長さ＝１のベクトルです）
 
+## 前回のおさらい
+
+- データの種類は三つある：数字、文字、ロジカル
+
+- ベクトルとは、同じ種類のデータが複数入っているもの
+  - `c()`でベクトルを作る
+  - `[]`で欲しいところだけを抜き出す
+
+- データフレームとは、エクセルで扱うような列と行からなるデータのこと
+  - `read_csv()`で読み込む
+  - `write_csv()`で書き出す
+
+## 前回のおさらい
+
+- データフレームを扱う`tidyverse`の関数が色々ある
+  - `select()`: 行を絞る
+  - `filter()`: 列を絞る
+  - `arrange()`: 列を並び替える
+
+## データを変換する
+
+`mutate()`である行のデータを変換することができる。
+
+例えば、人口を**万人単位**に変える：
+
+```{r}
+mutate(gapminder, pop = pop/10000)
+```
+
+## データを変換する
+
+既にある行の名前を使えばその行は上書きされる。新しい名前を使ったら、新しい行が加えられる：
+
+```{r}
+mutate(gapminder, pop_man = pop/10000)
+```
+
+## パイプについて
+
+前回では、複数の処理をする際、それぞれのアウトプットに名前をつけていました：
+
+> `gapminder`からアジアのみの国名・年・人口のデータを切り出して、別のcsvファイルとして保存して下さい
+
+```{r}
+gapminder_asia <- filter(gapminder, continent == "Asia")
+gapminder_asia_small <- select(gapminder_asia, country, year, pop)
+```
+
+でもこれは処理が多くなるとややこしくなってくる。
+
+**もっといい方法はある：パイプ**
+
+## パイプについて
+
+「パイプ」とは、左の関数のアウトプットを右の関数の<br>インプットに渡すもの
+
+<br>
+
+`%>%`（あるいは`|>`）と書く。
+
+## パイプについて
+
+先の作業はパイプを使うとこのようにできる：
+
+```{r}
+filter(gapminder, continent == "Asia") %>%
+  select(country, year, pop)
+```
+
+## パイプについて
+
+複数の処理があると便利なことが分かる：
+
+```{r}
+filter(gapminder, continent == "Asia") %>%
+  select(country, year, pop) %>%
+  arrange(pop)
+```
+
+## パイプについて
+
+あるいは
+```{r}
+gapminder %>%  
+  filter(continent == "Asia") %>%
+  select(country, year, pop) %>%
+  arrange(pop)
+```
+
+## チャレンジ
+
+`gapminder`から日本のデータに絞って、**一人当たりの<br>国内総生産**を計算してください
+
+## データの集計
+
+`summarize()`でデータの集計ができる：
+
+```{r}
+summarize(gapminder, mean_pop = mean(pop))
+```
+
+## グループ化
+
+しかし、全体の平均だけを計算してもあまり意味はない。
+
+それよりも、何か**毎に**データの集計を行いたい方が多い。
+
+それには`group_by()`関数を使う。例えば、国ごと。まずはデータのグループを指定する：
+
+```{r}
+gapminder %>%
+  group_by(country)
+```
+
+## グループ化
+
+次に、集計する：
+
+```{r}
+gapminder %>%
+  group_by(country) %>%
+  summarize(mean_pop = mean(pop))
+```
+
+## グループ化
+
+グループ毎の計算が終わったら、`ungroup()`でグループの解除をする必要がある場合がある。
+
+```{r}
+gapminder %>%
+  select(country, pop) %>%
+  group_by(country) %>%
+  mutate(mean_pop_country = mean(pop)) %>%
+  ungroup() %>%
+  mutate(mean_pop_total = mean(pop))
+```
+
+## 図の書き方
+
+Rで図を書くのに二つの方法がある：基本R（他のパッケージを使わない）と`ggplot2`パッケージによる書き方
+
+`ggplot2`は操作の一貫性があり、（割と）使いやすいのでおすすめです
+
+## ggplot2
+
+![](https://swcarpentry-ja.github.io/2021-04-02-todai-slides/images/ggplot-summary-1.png){fig-alt="diagram of a ggplot call" height="250"}
+
+## ggplot2
+
+![](https://swcarpentry-ja.github.io/2021-04-02-todai-slides/images/ggplot-summary-2.png){fig-alt="diagram of a ggplot call, filled in"}
+
+## ggplot2
+
+まずは`ggplot()`関数を使います。これでプロットのスペースが用意される（だけ）
+
+```{r}
+ggplot()
+```
+
+## ggplot2
+
+次にどのようなデータを使いたいのか指定する
+```{r}
+ggplot(data = gapminder)
+```
+
+これだけでは**どのようなプロットを作りたいのか**教えてないのでやはりまだ何も出てこない
+
+## ggplot2
+
+次にどのようにデータを表したいのか教える。例えば年を横（x）軸に、人口を縦（y）軸にして、形は点（ポイント）にする:
+
+```{r}
+ggplot(data = gapminder) +
+  geom_point(aes(x = year, y = pop))
+```
+
+やっと見えてきました！
+
+## ggplot2
+
+違う形を指定することもできる：
+
+```{r}
+ggplot(data = gapminder, aes(x = year, y = pop)) +
+  geom_line()
+```
+
+だが、これではあまり意味がないですね。
+
+## ggplot2
+
+もうちょっとデータを絞ってからやると`geom_line()`の意味が分かるでしょう：
+```{r}
+gapminder %>%
+  filter(country == "Japan") %>%
+  ggplot(aes(x = year, y = pop)) +
+  geom_line()
+```
+
+## ggplot2
+
+`geom_point()`と`geom_line`を両方使ってもいい：
+
+```{r}
+gapminder %>%
+  filter(country == "Japan") %>%
+  ggplot(aes(x = year, y = pop)) +
+  geom_line() +
+  geom_point()
+```

@@ -884,7 +884,9 @@ gapminder %>%
 
 ## チャレンジ
 
-`gapminder`から日本のデータに絞って、**一人当たりの<br>国内総生産**を計算してください
+`gapminder`から日本のデータに絞って、**国内総生産**を<br>計算してください
+
+（今のデータでは**一人当たり**の値です）
 
 ## データの集計
 
@@ -977,8 +979,8 @@ ggplot(data = gapminder) +
 違う形を指定することもできる：
 
 ```{r}
-ggplot(data = gapminder, aes(x = year, y = pop)) +
-  geom_line()
+ggplot(data = gapminder) +
+  geom_line(aes(x = year, y = pop))
 ```
 
 だが、これではあまり意味がないですね。
@@ -989,9 +991,20 @@ ggplot(data = gapminder, aes(x = year, y = pop)) +
 ```{r}
 gapminder %>%
   filter(country == "Japan") %>%
-  ggplot(aes(x = year, y = pop)) +
-  geom_line()
+  ggplot() +
+  geom_line(aes(x = year, y = pop))
 ```
+
+## ggplot2
+
+もう一回ポイントに戻してみましょう：
+```{r}
+gapminder %>%
+  filter(country == "Japan") %>%
+  ggplot() +
+  geom_point(aes(x = year, y = pop))
+```
+
 
 ## ggplot2
 
@@ -1004,3 +1017,23 @@ gapminder %>%
   geom_line() +
   geom_point()
 ```
+
+`+`を使うと図の要素を重ねていく
+
+## チャレンジ
+
+以下のプロットを作ってください：
+
+```{r}
+#| echo: false
+ggplot(gapminder) +
+  geom_point(aes(color = continent, size = gdpPercap, x = year, y = lifeExp))
+```
+
+ヒント：色は`color`で、大きさは`size`で指定できる
+
+## アンケート
+
+<https://forms.gle/ESy6XPXUR2mC9rB3A>
+
+ご回答のご協力をどうぞよろしくお願いします

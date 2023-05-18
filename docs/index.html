@@ -1673,7 +1673,8 @@ ages[-2]</code></pre>
 </section>
 <section id="チャレンジ-4" class="slide level2">
 <h2>チャレンジ</h2>
-<p><code>gapminder</code>から日本のデータに絞って、<strong>一人当たりの<br>国内総生産</strong>を計算してください</p>
+<p><code>gapminder</code>から日本のデータに絞って、<strong>国内総生産</strong>を<br>計算してください</p>
+<p>（今のデータでは<strong>一人当たり</strong>の値です）</p>
 </section>
 <section id="データの集計" class="slide level2">
 <h2>データの集計</h2>
@@ -1812,8 +1813,8 @@ ages[-2]</code></pre>
 <h2>ggplot2</h2>
 <p>違う形を指定することもできる：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop)) <span class="sc">+</span></span>
-<span id="cb100-2"><a href="#cb100-2"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder) <span class="sc">+</span></span>
+<span id="cb100-2"><a href="#cb100-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch"><p>だが、これではあまり意味がないですね。</p>
@@ -1824,23 +1825,46 @@ ages[-2]</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb101-2"><a href="#cb101-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Japan"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb101-3"><a href="#cb101-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop)) <span class="sc">+</span></span>
-<span id="cb101-4"><a href="#cb101-4"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb101-3"><a href="#cb101-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb101-4"><a href="#cb101-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
 <section id="ggplot2-7" class="slide level2">
 <h2>ggplot2</h2>
-<p><code>geom_point()</code>と<code>geom_line</code>を両方使ってもいい：</p>
+<p>もう一回ポイントに戻してみましょう：</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb102-2"><a href="#cb102-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Japan"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb102-3"><a href="#cb102-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop)) <span class="sc">+</span></span>
-<span id="cb102-4"><a href="#cb102-4"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb102-5"><a href="#cb102-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb102-3"><a href="#cb102-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb102-4"><a href="#cb102-4"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch"><div class="footer footer-default">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch"></section>
+<section id="ggplot2-8" class="slide level2">
+<h2>ggplot2</h2>
+<p><code>geom_point()</code>と<code>geom_line</code>を両方使ってもいい：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb103-2"><a href="#cb103-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Japan"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb103-3"><a href="#cb103-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop)) <span class="sc">+</span></span>
+<span id="cb103-4"><a href="#cb103-4"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb103-5"><a href="#cb103-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960" class="r-stretch"><p><code>+</code>を使うと図の要素を重ねていく</p>
+</section>
+<section id="チャレンジ-5" class="slide level2">
+<h2>チャレンジ</h2>
+<p>以下のプロットを作ってください：</p>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-47-1.png" width="960" class="r-stretch"><p>ヒント：色は<code>color</code>で、大きさは<code>size</code>で指定できる</p>
+</section>
+<section id="アンケート-2" class="slide level2">
+<h2>アンケート</h2>
+<p><a href="https://forms.gle/ESy6XPXUR2mC9rB3A" class="uri">https://forms.gle/ESy6XPXUR2mC9rB3A</a></p>
+<p>ご回答のご協力をどうぞよろしくお願いします</p>
+<div class="footer footer-default">
 <p><a href="https://joelnitta.github.io/uehara-r">https://joelnitta.github.io/uehara-r</a></p>
 </div>
 </section></section>

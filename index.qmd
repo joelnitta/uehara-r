@@ -812,6 +812,12 @@ data.frame(
   - `filter()`: 列を絞る
   - `arrange()`: 列を並び替える
 
+## 「データラングリング」の続き
+
+「wrangle」= （元々は牛などを）思う通りに整理すること
+
+![](https://datasciencecampus.github.io/DSCA_data_wrangling_with_r/slides/images/data_cowboy.png){fig-alt="data wrangling monsters"}
+
 ## データを変換する
 
 `mutate()`である行のデータを変換することができる。
@@ -847,11 +853,16 @@ gapminder_asia_small <- select(gapminder_asia, country, year, pop)
 
 ## パイプについて
 
+
 「パイプ」とは、左の関数のアウトプットを右の関数の<br>インプットに渡すもの
 
 <br>
 
 `%>%`（あるいは`|>`）と書く。
+
+## パイプについて
+
+![](images/pipe.png){fig-alt="mario going through a pipe"}
 
 ## パイプについて
 

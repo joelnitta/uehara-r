@@ -1601,7 +1601,7 @@ ages[-2]</code></pre>
 <span id="cb82-2"><a href="#cb82-2"></a>gapminder_asia_small <span class="ot">&lt;-</span> <span class="fu">select</span>(gapminder_asia, country, year, pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>でもこれは処理が多くなるとややこしくなってくる。</p>
-<p><strong>もっといい方法はある：パイプ</strong></p>
+<p><strong>もっといい方法がある：パイプ</strong></p>
 </section>
 <section id="パイプについて-1" class="slide level2">
 <h2>パイプについて</h2>
@@ -1710,7 +1710,11 @@ ages[-2]</code></pre>
 <h2>グループ化</h2>
 <p>しかし、全体の平均だけを計算してもあまり意味はない。</p>
 <p>それよりも、何か<strong>毎に</strong>データの集計を行いたい方が多い。</p>
-<p>それには<code>group_by()</code>関数を使う。例えば、国ごと。まずはデータのグループを指定する：</p>
+</section>
+<section id="グループ化-1" class="slide level2">
+<h2>グループ化</h2>
+<p>何か<strong>毎に</strong>処理を施すには<code>group_by()</code>関数を使う。</p>
+<p>例えば、国ごと。まずはデータのグループを指定する：</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb91-2"><a href="#cb91-2"></a>  <span class="fu">group_by</span>(country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1733,7 +1737,7 @@ ages[-2]</code></pre>
 </div>
 </div>
 </section>
-<section id="グループ化-1" class="slide level2">
+<section id="グループ化-2" class="slide level2">
 <h2>グループ化</h2>
 <p>次に、集計する：</p>
 <div class="cell">
@@ -1758,7 +1762,7 @@ ages[-2]</code></pre>
 </div>
 </div>
 </section>
-<section id="グループ化-2" class="slide level2">
+<section id="グループ化-3" class="slide level2">
 <h2>グループ化</h2>
 <p>グループ毎の計算が終わったら、<code>ungroup()</code>でグループの解除をする必要がある場合がある。</p>
 <div class="cell">
@@ -1768,21 +1772,19 @@ ages[-2]</code></pre>
 <span id="cb95-4"><a href="#cb95-4"></a>  <span class="fu">mutate</span>(<span class="at">mean_pop_country =</span> <span class="fu">mean</span>(pop)) <span class="sc">%&gt;%</span></span>
 <span id="cb95-5"><a href="#cb95-5"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb95-6"><a href="#cb95-6"></a>  <span class="fu">mutate</span>(<span class="at">mean_pop_total =</span> <span class="fu">mean</span>(pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,704 × 4
-   country          pop mean_pop_country mean_pop_total
-   &lt;chr&gt;          &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
- 1 Afghanistan  8425333        15823715.      29601212.
- 2 Afghanistan  9240934        15823715.      29601212.
- 3 Afghanistan 10267083        15823715.      29601212.
- 4 Afghanistan 11537966        15823715.      29601212.
- 5 Afghanistan 13079460        15823715.      29601212.
- 6 Afghanistan 14880372        15823715.      29601212.
- 7 Afghanistan 12881816        15823715.      29601212.
- 8 Afghanistan 13867957        15823715.      29601212.
- 9 Afghanistan 16317921        15823715.      29601212.
-10 Afghanistan 22227415        15823715.      29601212.
-# ℹ 1,694 more rows</code></pre>
+  country          pop mean_pop_country mean_pop_total
+  &lt;chr&gt;          &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+1 Afghanistan  8425333        15823715.      29601212.
+2 Afghanistan  9240934        15823715.      29601212.
+3 Afghanistan 10267083        15823715.      29601212.
+4 Afghanistan 11537966        15823715.      29601212.
+5 Afghanistan 13079460        15823715.      29601212.
+6 Afghanistan 14880372        15823715.      29601212.
+# ℹ 1,698 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1806,7 +1808,7 @@ ages[-2]</code></pre>
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960" class="r-stretch"></section>
 <section id="ggplot2-3" class="slide level2">
 <h2>ggplot2</h2>
 <p>次にどのようなデータを使いたいのか指定する</p>
@@ -1814,7 +1816,7 @@ ages[-2]</code></pre>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" width="960" class="r-stretch"><p>これだけでは<strong>どのようなプロットを作りたいのか</strong>教えてないのでやはりまだ何も出てこない</p>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"><p>これだけでは<strong>どのようなプロットを作りたいのか</strong>教えてないのでやはりまだ何も出てこない</p>
 </section>
 <section id="ggplot2-4" class="slide level2">
 <h2>ggplot2</h2>
@@ -1824,7 +1826,7 @@ ages[-2]</code></pre>
 <span id="cb99-2"><a href="#cb99-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"><p>やっと見えてきました！</p>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch"><p>やっと見えてきました！</p>
 </section>
 <section id="ggplot2-5" class="slide level2">
 <h2>ggplot2</h2>
@@ -1834,7 +1836,7 @@ ages[-2]</code></pre>
 <span id="cb100-2"><a href="#cb100-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch"><p>だが、これではあまり意味がないですね。</p>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"><p>だが、これではあまり意味がないですね。</p>
 </section>
 <section id="ggplot2-6" class="slide level2">
 <h2>ggplot2</h2>
@@ -1846,7 +1848,7 @@ ages[-2]</code></pre>
 <span id="cb101-4"><a href="#cb101-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch"></section>
 <section id="ggplot2-7" class="slide level2">
 <h2>ggplot2</h2>
 <p>もう一回ポイントに戻してみましょう：</p>
@@ -1857,7 +1859,7 @@ ages[-2]</code></pre>
 <span id="cb102-4"><a href="#cb102-4"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960" class="r-stretch"></section>
 <section id="ggplot2-8" class="slide level2">
 <h2>ggplot2</h2>
 <p><code>geom_point()</code>と<code>geom_line</code>を両方使ってもいい：</p>
@@ -1869,13 +1871,13 @@ ages[-2]</code></pre>
 <span id="cb103-5"><a href="#cb103-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" width="960" class="r-stretch"><p><code>+</code>を使うと図の要素を重ねていく</p>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-47-1.png" width="960" class="r-stretch"><p><code>+</code>を使うと図の要素を重ねていく</p>
 </section>
 <section id="チャレンジ-5" class="slide level2">
 <h2>チャレンジ</h2>
 <p>以下のプロットを作ってください：</p>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-47-1.png" width="960" class="r-stretch"><p>ヒント：色は<code>color</code>で、大きさは<code>size</code>で指定できる</p>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-48-1.png" width="960" class="r-stretch"><p>ヒント：色は<code>color</code>で、大きさは<code>size</code>で指定できる</p>
 </section>
 <section id="アンケート-2" class="slide level2">
 <h2>アンケート</h2>

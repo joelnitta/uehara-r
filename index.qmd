@@ -849,7 +849,7 @@ gapminder_asia_small <- select(gapminder_asia, country, year, pop)
 
 でもこれは処理が多くなるとややこしくなってくる。
 
-**もっといい方法はある：パイプ**
+**もっといい方法がある：パイプ**
 
 ## パイプについて
 
@@ -913,7 +913,11 @@ summarize(gapminder, mean_pop = mean(pop))
 
 それよりも、何か**毎に**データの集計を行いたい方が多い。
 
-それには`group_by()`関数を使う。例えば、国ごと。まずはデータのグループを指定する：
+## グループ化
+
+何か**毎に**処理を施すには`group_by()`関数を使う。
+
+例えば、国ごと。まずはデータのグループを指定する：
 
 ```{r}
 gapminder %>%
@@ -935,6 +939,7 @@ gapminder %>%
 グループ毎の計算が終わったら、`ungroup()`でグループの解除をする必要がある場合がある。
 
 ```{r}
+#| eval: false
 gapminder %>%
   select(country, pop) %>%
   group_by(country) %>%
@@ -942,6 +947,18 @@ gapminder %>%
   ungroup() %>%
   mutate(mean_pop_total = mean(pop))
 ```
+
+```{r}
+#| echo: false
+gapminder %>%
+  select(country, pop) %>%
+  group_by(country) %>%
+  mutate(mean_pop_country = mean(pop)) %>%
+  ungroup() %>%
+  mutate(mean_pop_total = mean(pop)) %>%
+  print(n = 6)
+```
+
 
 ## 図の書き方
 
